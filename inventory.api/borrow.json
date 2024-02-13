@@ -1,0 +1,20 @@
+[
+    {
+        "id": 1,
+        "itemName": "Spanner",
+        "Name": "bob",
+        "Status": "In",
+        "Quantity": 1,
+        "Borrowing Date": "2024-02-14",
+        "Return Date": "2024-02-24"
+    },
+    {
+        "id": 2,
+        "itemName": "hammer",
+        "Name": "bob",
+        "Status": "In",
+        "Quantity": 1,
+        "Borrowing Date": "2024-02-14",
+        "Return Date": "2024-02-24"
+    }
+]

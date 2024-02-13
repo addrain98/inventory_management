@@ -1,0 +1,10 @@
+[
+    {
+        "id":1,
+        "Name": "lights",
+        "Category": "Electrical",
+        "Quantity": 2,
+        "Location": "Tukang",
+        "Image": "link"
+    }
+]
