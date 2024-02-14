@@ -1,20 +1,45 @@
 {{! Extend the base layout }}
-{{#extends 'base'}}
+{{#extends "base"}}
 
 {{! Define the content block }}
-{{#block 'content'}}
-    <h2>Add or Update Item Status</h2>
-    <form method="POST" action="/status"> 
-        <div class="mb-3">
-            <label for="statusType" class="form-label">Item Status</label>
-            <select class="form-select" id="statusType" name="status" required>
-                <option value="" disabled selected>Select an option</option>
-                <option value="borrowed">Borrowed</option>
-                <option value="returned">Returned</option>
-            </select>
-        </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
-    </form>
+{{#block "content"}}
+   <h1>Status Management</h1>
+
+<h2>Add New Status</h2>
+<form action="/status" method="POST">
+    <div>
+        <label>Status:</label>
+        <input type="text" 
+            name="status" 
+            class="form-control"
+            placeholder="Enter status (borrowed or returned)"
+        />
+    </div>
+    <input type="submit" class="btn btn-primary mt-3" value="Add Status"/>
+</form>
+
+<h2>Current Statuses</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Status</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {{#each statuses}}
+        <tr>
+            <td>{{this.status}}</td>
+            <td>
+                <!-- The delete button will need to be a form if you're using method-override for DELETE requests -->
+                <form action="/status/{{this._id}}?_method=DELETE" method="POST" style="display: inline;">
+                    <button type="submit" class="btn btn-danger">Delete</button>
+                </form>
+            </td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
 {{/block}}
 
 {{/extends}}
