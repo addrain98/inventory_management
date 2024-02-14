@@ -16,7 +16,7 @@ router.post("/", async function (req, res) {
     
         const newStatus = { status };
         const result = await getDB().collection(COLLECTION).insertOne(newStatus);
-        res.status(201).json(result);
+        res.redirect('/status')
 
     } catch (error) {
         res.status(500).json({ message: 'Error adding new item', error: error.message });
@@ -34,7 +34,21 @@ router.get('/', async (req, res) => {
 });
 
 // DELETE - Delete an item
-router.delete("/:id", async function (req, res) {
+router.get('/delete/:id', async (req, res) => {
+    try {
+        const statusId = req.params.id;
+        const objectId = new ObjectId(statusId);
+        const result = await getDB().collection(COLLECTION).find({objectId}).toArray();
+        if (result) {
+            res.json(result);
+        }
+
+    } catch (error) {
+        res.status(500).json({ message: 'Error fetching item', error: error.message });
+    }
+});
+
+router.post("/delete/:id", async function (req, res) {
     try {
         const statusId = req.params.id;
         const objectId = new ObjectId(statusId);
@@ -42,9 +56,7 @@ router.delete("/:id", async function (req, res) {
         if (result.deletedCount === 0) {
             return res.status(404).json({ message: "Status not found" });
         }
-
-        res.status(200).json({ message: "Status successfully deleted" });
-
+        res.redirect('/status');
     } catch (error) {
         res.status(500).json({ message: 'Error deleting item', error: error.message });
     }

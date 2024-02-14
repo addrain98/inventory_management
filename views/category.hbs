@@ -3,34 +3,34 @@
 
 {{! Define the content block }}
 {{#block "content"}}
-   <h1>Status Management</h1>
+   <h1>Category Management</h1>
 
-<form action="/status" method="POST">
+<form action="/category" method="POST">
     <div>
-        <label>Add Status:</label>
+        <label>Add Category:</label>
         <input type="text" 
-            name="status" 
+            name="category" 
             class="form-control"
-            placeholder="Enter status (borrowed or returned)"
+            placeholder="Enter category (e.g. Electrical, Plumbing, etc)"
         />
     </div>
-    <input type="submit" class="btn btn-primary mt-3" value="Add Status"/>
+    <input type="submit" class="btn btn-primary mt-3" value="Add Category"/>
 </form>
 
-<h2>Current Statuses</h2>
+<h2>Current Categories</h2>
 <table class="table">
     <thead>
         <tr>
-            <th>Status</th>
+            <th>Category</th>
             <th>Actions</th>
         </tr>
     </thead>
     <tbody>
-        {{#each statuses}}
+        {{#each categories}}
         <tr>
-            <td>{{this.status}}</td>
+            <td>{{this.category}}</td>
             <td>
-                <form action="/status/delete/{{this._id}}" method="post">
+                <form action="/category/delete/{{this._id}}" method="post">
                 <button type="submit" class="btn btn-danger">Delete</button>
         </form>
             </td>
@@ -38,6 +38,8 @@
         {{/each}}
     </tbody>
 </table>
+
+
 {{/block}}
 
 {{/extends}}

@@ -5,6 +5,7 @@ const cors = require('cors');
 require('dotenv').config();
 const { connect } = require("./mongoUtil");
 const statusRoutes = require("./routes/status");
+const categoryRoutes = require("./routes/category");
 
 const app = express();
 
@@ -34,6 +35,7 @@ async function main() {
     }
     //Routes
     app.use('/status', statusRoutes);
+    app.use('/category', categoryRoutes);
 }
 
 main();
