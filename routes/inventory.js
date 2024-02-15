@@ -29,7 +29,7 @@ router.get('/create', async (req, res) => {
     try {
         const categories = await getDB().collection('category').find({}).toArray();
         const statuses = await getDB().collection('status').find({}).toArray();
-        res.render('itemCreationForm', { categories, statuses }); // Assuming 'itemCreationForm' is your template
+        res.render('create_inventory', { categories, statuses });
     } catch (error) {
         res.status(500).json({ message: 'Error loading form', error: error.message });
     }

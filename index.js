@@ -35,9 +35,9 @@ async function main() {
         process.exit(1); // Exit with error
     }
     //Routes
+    app.use('/inventory', inventoryRoutes);
     app.use('/status', statusRoutes);
     app.use('/category', categoryRoutes);
-    app.use('/inventory', inventoryRoutes);
 }
 
 main();
