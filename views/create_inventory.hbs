@@ -1,0 +1,41 @@
+{{#extends "base"}}
+    {{#block "content"}}    
+        <h2>New Item Form</h2>
+        <form method="post" action="/create"> <!-- Adjust the action URL as necessary -->
+            <div class="mb-3">
+                <label>Item:</label>
+                <input type="text" class="form-control"  name="name" required>
+            </div>
+
+            <div class="mb-3">
+                <label>Quantity:</label>
+                <input type="number" class="form-control" name="quantity" required>
+            </div>
+
+            <div class="mb-3">
+                <label>Location</label>
+                <input type="text" class="form-control" name="location">
+            </div>
+
+            <div class="mb-3">
+                <label for="category">Category</label>
+                <select id="category" name="category" required>
+                    {{#each categories}}
+                    <option value="{{this._id}}">{{this.name}}</option>
+                    {{/each}}
+                </select>
+            </div>
+
+            <div class="mb-3">
+                <label for="status">Status</label>
+                <select id="status" name="status" required>
+                    {{#each statuses}}
+                    <option value="{{this._id}}">{{this.name}}</option>
+                    {{/each}}
+                </select>
+            </div>
+
+            <button type="submit">Submit</button>
+        </form>
+   {{/block}}
+{{/extends}}

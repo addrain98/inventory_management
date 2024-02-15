@@ -6,6 +6,7 @@ require('dotenv').config();
 const { connect } = require("./mongoUtil");
 const statusRoutes = require("./routes/status");
 const categoryRoutes = require("./routes/category");
+const inventoryRoutes = require("./routes/inventory");
 
 const app = express();
 
@@ -36,6 +37,7 @@ async function main() {
     //Routes
     app.use('/status', statusRoutes);
     app.use('/category', categoryRoutes);
+    app.use('/inventory', inventoryRoutes);
 }
 
 main();
