@@ -5,7 +5,7 @@ require('dotenv').config();
 const router = express.Router();
 
 
-router.post("/create", async function (req, res) {
+router.post("/", async function (req, res) {
     // anything retrieved is from req.body is a string, not number
     try {
         const { name, category, quantity, location, status } = req.body;
@@ -20,7 +20,7 @@ router.post("/create", async function (req, res) {
         const result = await getDB().collection('inventory').insertOne(newItem);
         res.json(result);
     } catch (error) {
-        res.status(500).json({ message: 'Error adding new product', error: error.message });
+        res.status(500).json({ message: 'Error adding new item', error: error.message });
     }
 
 });
@@ -52,7 +52,7 @@ router.get('/', async (req, res) => {
         statuses.forEach(status => statusMap[status._id] = status);
 
         // Enrich products with UOM and Category
-        products.forEach(item => {
+        items.forEach(item => {
             if (item.status && statusMap[item.status._id]) {
                 item.status = statusMap[item.status._id];
             }
@@ -63,7 +63,7 @@ router.get('/', async (req, res) => {
 
         res.json(items);
     } catch (error) {
-        res.status(500).json({ message: 'Error fetching products', error: error.message });
+        res.status(500).json({ message: 'Error fetching item', error: error.message });
     }
 });
 

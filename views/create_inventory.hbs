@@ -1,7 +1,7 @@
 {{#extends "base"}}
     {{#block "content"}}    
         <h2>New Item Form</h2>
-        <form method="post" action="/create"> <!-- Adjust the action URL as necessary -->
+        <form method="POST" action="/inventory/create"> <!-- Adjust the action URL as necessary -->
             <div class="mb-3">
                 <label>Item:</label>
                 <input type="text" class="form-control"  name="name" required>
@@ -18,19 +18,19 @@
             </div>
 
             <div class="mb-3">
-                <label>Category</label>
-                <select name="category" required>
+                <label>Category:</label>
+                <select id="category" name="category" required>
                     {{#each categories}}
-                        <option value="{{this._id}}">{{this.name}}</option>
+                        <option value="{{this._id}}">{{this.category}}</option>
                     {{/each}}
                 </select>
             </div>
 
             <div class="mb-3">
-                <label>Status</label>
-                <select name="status" required>
+                <label>Status:</label>
+                <select id="category" name="status" required>
                     {{#each statuses}}
-                        <option value="{{this._id}}">{{this.name}}</option>
+                        <option value="{{this._id}}">{{this.status}}</option>
                     {{/each}}
                 </select>
             </div>
